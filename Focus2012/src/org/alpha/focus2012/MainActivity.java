@@ -17,11 +17,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.parse.Parse;
+import com.parse.ParseAnalytics;
+import com.parse.ParseInstallation;
+import com.parse.PushService;
 
 public class MainActivity extends SherlockFragmentActivity {
 	
@@ -66,6 +71,12 @@ public class MainActivity extends SherlockFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        Parse.initialize(this, "4TKzxN13GcKwwBitDbbWsuwys5atCZ6AMSX37ARL", "5HeFvLWCLStw8aZftXPLYDLBmIRFESju3hdEhIOJ");
+        //Parse.initialize(this, "yYdPVCsM1GZGQWmJhxwQcszbG3802BJKWyqtZzFg","d8IVhmFzL6gzSAZEPxDCU9xmAjep08LVnUlRBfJG");
+        PushService.setDefaultPushCallback(this, MainActivity.class);
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+        ParseAnalytics.trackAppOpened(getIntent());
+
         mActionBar = getSupportActionBar();
         mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);        
         mActionBar.setDisplayShowTitleEnabled(true);   
