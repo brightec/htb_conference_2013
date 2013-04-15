@@ -1,0 +1,6 @@
+[submodule "android-mapviewballoons"]
+	path = android-mapviewballoons
+	url = git@github.com:brightec/android-mapviewballoons.git
+[submodule "ActionBarSherlock"]
+	path = ActionBarSherlock
+	url = git@github.com:brightec/ActionBarSherlock.git
