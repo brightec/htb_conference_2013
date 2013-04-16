@@ -146,10 +146,20 @@ public class SessionDetailActivity extends SherlockListActivity {
             };
         }
 		
+        OnClickListener rateButtonHandler = null;
+        rateButtonHandler = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), RateSessionActivity.class);
+                intent.putExtra(RateSessionActivity.SESSION_ID, session.sessionId);
+                startActivity(intent);    
+            }
+        };
 		
         ButtonBarRow buttons = new ButtonBarRow(this);
         buttons.setButton1(getString(R.string.venue_details_button_title), venueButtonHandler);
-        buttons.setButton2(bookmarkButtonTitle, bookmarkButtonHandler);
+        buttons.setButton2("Rate Session", rateButtonHandler);
+        buttons.setButton3(bookmarkButtonTitle, bookmarkButtonHandler);
         detailRows.add(buttons);
         
         //buttons.setButton1("Add Alarm", alarmButtonHandler);

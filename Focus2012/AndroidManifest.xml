@@ -48,6 +48,8 @@
         </activity>
         <activity android:name=".diary.SeminarOptionsActivity" >
         </activity>
+        <activity android:name=".diary.RateSessionActivity" >
+        </activity>
         <activity android:name=".diary.SessionDetailActivity" >
         </activity>
         <activity android:name=".diary.SessionsBySpeakerActivity" >
