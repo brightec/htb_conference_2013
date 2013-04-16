@@ -38,7 +38,7 @@ public class Session {
 
     public final int sessionId, dayId, roomId, streamId, sessionGroupId;
     public final Type type;
-    public final String name, text;
+    public final String name, text, notesKey;
     public final LocalDateTime startDateTime, endDateTime;
 
     public final List<Integer> speakerIds = new ArrayList<Integer>();
@@ -54,6 +54,7 @@ public class Session {
         this.startDateTime = JSON.getLocalDateTime(o, "start_datetime", DateIntepretation.SECONDS_SINCE_1970, DateTimeZone.UTC);
         this.endDateTime = JSON.getLocalDateTime(o, "end_datetime", DateIntepretation.SECONDS_SINCE_1970, DateTimeZone.UTC);
         this.text = JSON.getString(o, "description");
+        this.notesKey = JSON.getString(o, "notes_key");
         try {
             JSONArray a = o.getJSONArray("speakers");
             for (int x=0; x<a.length(); x++) {
