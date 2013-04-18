@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.text.StrBuilder;
@@ -26,11 +28,16 @@ import org.alpha.focus2012.rows.DetailRow;
 import org.alpha.focus2012.rows.HTMLRow;
 import org.alpha.focus2012.rows.SpeakerRow;
 import org.alpha.focus2012.speakers.SpeakerDetailActivity;
+import org.joda.time.LocalDateTime;
 import org.json.JSONObject;
 
+import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -133,8 +140,53 @@ public class SessionDetailActivity extends SherlockListActivity {
                 @Override
                 public void onClick(View v) {
                     DiaryChoices.bookmarkSession(SessionDetailActivity.this, session);
-                    setResult(RESULT_OK);
-                    finish();
+                    
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SessionDetailActivity.this);
+                    builder.setTitle("Would you like a reminder?")
+                           .setItems(R.array.reminder_items, new DialogInterface.OnClickListener() {
+                               public void onClick(DialogInterface dialog, int which) {
+                                   int reminder;
+                                   switch (which) {
+                                       case 1:
+                                           reminder = 5;
+                                           break;
+                                       case 2:
+                                           reminder = 10;
+                                           break;
+                                       case 3:
+                                           reminder = 15;
+                                           break;
+                                       case 4:
+                                           reminder = 20;
+                                           break;
+                                       case 5:
+                                           reminder = 30;
+                                           break;
+                                       default:
+                                           reminder = -1;
+                                           break;
+                                   }
+
+                                   if (reminder > 0) {
+                                       LocalDateTime sessionStart = session.startDateTime;
+                                       LocalDateTime reminderTime = sessionStart.minusMinutes(reminder);
+
+                                       Intent intent = new Intent(SessionDetailActivity.this, ReminderReceiver.class);
+                                       intent.putExtra("title", session.name);
+                                       intent.putExtra("note", "Starts in " + reminder + " mins");
+                                       intent.putExtra("sessionId", session.sessionId);
+                                       PendingIntent sender = PendingIntent.getBroadcast(SessionDetailActivity.this, session.sessionId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                                       AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+                                       am.set(AlarmManager.RTC_WAKEUP, reminderTime.toDateTime().getMillis(), sender);
+                                       //am.set(AlarmManager.RTC_WAKEUP, new Date().getTime()+15000, sender);
+                                   }
+
+                                   setResult(RESULT_OK);
+                                   finish();
+                               }
+                           });
+                    builder.create().show();
                 }
             };
         } else {
@@ -142,6 +194,14 @@ public class SessionDetailActivity extends SherlockListActivity {
                 @Override
                 public void onClick(View v) {
                     DiaryChoices.unbookmarkSession(SessionDetailActivity.this, session);
+                    
+                    Intent intent = new Intent(SessionDetailActivity.this, ReminderReceiver.class);
+                    intent.putExtra("sessionId", session.sessionId);
+                    PendingIntent sender = PendingIntent.getBroadcast(SessionDetailActivity.this, session.sessionId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    
+                    AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+                    am.cancel(sender);
+                    
                     setResult(RESULT_OK);
                     finish();
                 }
