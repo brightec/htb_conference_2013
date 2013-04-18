@@ -176,6 +176,11 @@ public class SessionDetailActivity extends SherlockListActivity {
             @Override
             public void onClick(View v) {
                 String notesKey = session.notesKey;
+                if (notesKey == null) {
+                    Toast.makeText(SessionDetailActivity.this, "Sorry, no notes are available for this session", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 File file = new File(getExternalFilesDir(null), notesKey + ".pdf");
 
                 // If the file doesn't exist, download it
