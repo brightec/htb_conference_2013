@@ -18,9 +18,11 @@ public class ReminderReceiver extends BroadcastReceiver {
         String title = extras.getString("title");
         String note = extras.getString("note");
         Integer sessionId = extras.getInt("sessionId");
+        Integer reminder = extras.getInt("reminder");
 
-        Intent notificationIntent = new Intent(context, SessionDetailActivity.class);
-        notificationIntent.putExtra(SessionDetailActivity.EXTRA_SESSION_ID, sessionId);
+        Intent notificationIntent = new Intent(context, ReminderActivity.class);
+        notificationIntent.putExtra(ReminderActivity.EXTRA_SESSION_ID, sessionId);
+        notificationIntent.putExtra(ReminderActivity.EXTRA_REMINDER, reminder);
 
         PendingIntent contentIntent = PendingIntent.getActivity(context, NOTIFICATION_ID, notificationIntent, 0);
         Notification notification = new Notification(android.R.drawable.ic_lock_idle_alarm, "Session Reminder", System.currentTimeMillis());

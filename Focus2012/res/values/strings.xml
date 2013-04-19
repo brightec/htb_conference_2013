@@ -21,8 +21,8 @@
     <string name="speaker_sessions_title">Sessions</string>
     <string name="session_speakers_title">Speaker</string>
     <string name="venue_details_button_title">Venue Details</string>
-    <string name="session_bookmark_button_title">Add to Diary</string>
-    <string name="session_bookmarked_button_title">Remove from Diary</string>
+    <string name="session_bookmark_button_title">Bookmark</string>
+    <string name="session_bookmarked_button_title">Unbookmark</string>
     <string name="Diary_change_seminar_choice">Change your option</string>
     <string name="Diary_view_seminar_options">Choose your option</string>
     <string name="programme_change_seminar_choice">Change your option</string>

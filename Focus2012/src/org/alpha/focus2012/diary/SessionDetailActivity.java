@@ -175,11 +175,12 @@ public class SessionDetailActivity extends SherlockListActivity {
                                        intent.putExtra("title", session.name);
                                        intent.putExtra("note", "Starts in " + reminder + " mins");
                                        intent.putExtra("sessionId", session.sessionId);
+                                       intent.putExtra("reminder", reminder);
                                        PendingIntent sender = PendingIntent.getBroadcast(SessionDetailActivity.this, session.sessionId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                                        AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
                                        am.set(AlarmManager.RTC_WAKEUP, reminderTime.toDateTime().getMillis(), sender);
-                                       //am.set(AlarmManager.RTC_WAKEUP, new Date().getTime()+15000, sender);
+                                       //am.set(AlarmManager.RTC_WAKEUP, new Date().getTime()+5000, sender);
                                    }
 
                                    setResult(RESULT_OK);
