@@ -46,24 +46,35 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class SessionDetailActivity extends SherlockListActivity {
+public class SessionDetailActivity extends SherlockFragmentActivity {
     
     public static final String EXTRA_SESSION_ID = "EXTRA_SESSION_ID";
     
     private ActionBar mActionBar;
     private Session session;
-    
+    private GoogleMap mMap;
+    private ListView list;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.sessiondetail_activity);
         
         int sessionId = getIntent().getIntExtra(EXTRA_SESSION_ID, 0);
         session = DataStore.session(this, sessionId);
@@ -73,11 +84,21 @@ public class SessionDetailActivity extends SherlockListActivity {
         mActionBar.setDisplayHomeAsUpEnabled(true);
         
         AlphaAdapter adapter = new AlphaAdapter();
-        setListAdapter(adapter);
-        getListView().setOnItemClickListener(adapter);
+        list = (ListView) findViewById(R.id.listView1);
+        list.setAdapter(adapter);
+        list.setOnItemClickListener(adapter);
+        
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        if (savedInstanceState == null) {
+            // First incarnation of this activity.
+            mapFragment.setRetainInstance(true);
+        } else {
+            // Reincarnated activity. The obtained map is the same map instance in the previous
+            // activity life cycle. There is no need to reinitialize it.
+            mMap = mapFragment.getMap();
+        }
     }
     
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -95,6 +116,25 @@ public class SessionDetailActivity extends SherlockListActivity {
         }
         else {
             venue = null;
+        }
+        
+        if (mMap == null) {
+            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+            
+            // Check if we were successful in obtaining the map.
+            if (mMap != null) {
+                mMap.setMyLocationEnabled(true);
+                mMap.getUiSettings().setCompassEnabled(true);
+
+                LatLng pos = new LatLng(venue.latitude, venue.longitude);
+                MarkerOptions options = new MarkerOptions();
+                options.position(pos);
+                options.title(venue.name);
+                mMap.addMarker(options);
+
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(pos));
+                mMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+            }
         }
         
         // details
@@ -179,8 +219,8 @@ public class SessionDetailActivity extends SherlockListActivity {
                                        PendingIntent sender = PendingIntent.getBroadcast(SessionDetailActivity.this, session.sessionId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                                        AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-                                       am.set(AlarmManager.RTC_WAKEUP, reminderTime.toDateTime().getMillis(), sender);
-                                       //am.set(AlarmManager.RTC_WAKEUP, new Date().getTime()+5000, sender);
+                                       //am.set(AlarmManager.RTC_WAKEUP, reminderTime.toDateTime().getMillis(), sender);
+                                       am.set(AlarmManager.RTC_WAKEUP, new Date().getTime()+5000, sender);
                                    }
 
                                    setResult(RESULT_OK);
@@ -257,7 +297,10 @@ public class SessionDetailActivity extends SherlockListActivity {
         buttons.setButton1("Notes", notesButtonHandler);
         buttons.setButton2("Rate Session", rateButtonHandler);
         buttons.setButton3(bookmarkButtonTitle, bookmarkButtonHandler);
-        detailRows.add(buttons);
+        //detailRows.add(buttons);
+        LinearLayout buttonRow = (LinearLayout) findViewById(R.id.buttonRow);
+        buttonRow.removeAllViews();
+        buttonRow.addView(buttons.getView(null));
         
         //buttons.setButton1("Add Alarm", alarmButtonHandler);
         //detailRows.add(buttons);
@@ -291,7 +334,7 @@ public class SessionDetailActivity extends SherlockListActivity {
           speakersSection.mSectionBackgroundColourResource = R.color.fixed_section_header;
           sections.add(speakersSection);
         }
-        ((AlphaAdapter) getListAdapter()).setSections(sections);
+        ((AlphaAdapter) list.getAdapter()).setSections(sections);
     }
     
     
