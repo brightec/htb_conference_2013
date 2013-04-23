@@ -6,7 +6,7 @@ import org.alpha.focus2012.more.MoreFragment;
 //import org.alpha.focus2012.programme.ProgrammeFragment;
 import org.alpha.focus2012.diary.DiaryFragment;
 import org.alpha.focus2012.speakers.SpeakersFragment;
-import org.alpha.focus2012.home.HomeFragment;
+import org.alpha.focus2012.home.HomeVideoFragment;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -82,10 +82,10 @@ public class MainActivity extends SherlockFragmentActivity {
         mActionBar.setDisplayShowTitleEnabled(true);   
                 
         //Home
-        //Tab homeTab  = mActionBar.newTab()
-        //        .setText(R.string.home_tab)
-        //        .setTabListener(new TabListener<HomeFragment>(this, "home", HomeFragment.class));
-        //mActionBar.addTab(homeTab);
+        Tab homeTab  = mActionBar.newTab()
+                .setText(R.string.home_tab)
+                .setTabListener(new TabListener<HomeVideoFragment>(this, "home", HomeVideoFragment.class));
+        mActionBar.addTab(homeTab);
                 
         // programme
         //Tab programmeTab  = mActionBar.newTab()

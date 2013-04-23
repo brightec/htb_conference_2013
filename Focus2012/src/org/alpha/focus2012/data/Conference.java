@@ -11,7 +11,7 @@ import org.json.JSONObject;
 public class Conference implements Comparable<Conference> {
 
     public final int conferenceId;
-    public final String name, text, imageKey, bookingUrl, donationUrl, donationDescription, donationTelephoneNumber;
+    public final String name, text, imageKey, bookingUrl, donationUrl, donationDescription, donationTelephoneNumber, youtubeUrl;
     public final LocalDate startDate, endDate;
     
     
@@ -26,6 +26,7 @@ public class Conference implements Comparable<Conference> {
         this.donationUrl = JSON.getString(o, "donation_url");
         this.donationDescription = JSON.getString(o, "donation_description");
         this.donationTelephoneNumber = JSON.getString(o, "donation_telephone_number");
+        this.youtubeUrl = JSON.getString(o, "youtube_url");
     }
 
 
