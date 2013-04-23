@@ -21,12 +21,14 @@ import org.alpha.focus2012.rows.DetailRow;
 import org.alpha.focus2012.rows.HTMLRow;
 import org.alpha.focus2012.rows.DiaryRow;
 import org.alpha.focus2012.rows.ImageRow;
+import org.alpha.focus2012.rows.VideoRow;
 import org.alpha.util.MultiValueMap;
 import org.alpha.util.ReadablePartialComparator;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -71,6 +73,9 @@ public class SpeakerDetailActivity extends SherlockListActivity {
         List<Row> rows = new ArrayList<Row>();
         rows.add(new ImageRow(speaker.displayName(), speaker.position, new Resource(speaker.imageKey, Resource.Type.SpeakerImageLarge), this));
         rows.add(new HTMLRow(speaker.biography, this));
+        if (speaker.youtubeUrl != null && !speaker.youtubeUrl.isEmpty()) {
+            rows.add(new VideoRow(R.drawable.video, speaker.youtubeUrl, this));
+        }
 
         OnClickListener websiteOnClick = null;
         if (speaker.websiteUrl != null) {

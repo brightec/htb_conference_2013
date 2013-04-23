@@ -18,6 +18,7 @@ public class Speaker implements Comparable<Speaker> {
     public final String biography;
     public final String position;
     public final String imageKey;
+    public final String youtubeUrl;
     public final List<Integer> sessionIds = new ArrayList<Integer>();
     
     private final String firstName, lastName, alias, sortableName;
@@ -34,6 +35,7 @@ public class Speaker implements Comparable<Speaker> {
         this.websiteUrl = JSON.getString(o, "website_url");
         this.alias = JSON.getString(o, "alias");
         this.sortableName = lastName+" "+firstName;
+        this.youtubeUrl = JSON.getString(o, "youtube_url");
         
         try {
             JSONArray a = o.getJSONArray("sessions");
