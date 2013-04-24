@@ -73,8 +73,8 @@ public class MainActivity extends SherlockFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        Parse.initialize(this, "4TKzxN13GcKwwBitDbbWsuwys5atCZ6AMSX37ARL", "5HeFvLWCLStw8aZftXPLYDLBmIRFESju3hdEhIOJ");
-        //Parse.initialize(this, "yYdPVCsM1GZGQWmJhxwQcszbG3802BJKWyqtZzFg","d8IVhmFzL6gzSAZEPxDCU9xmAjep08LVnUlRBfJG");
+        //Parse.initialize(this, "4TKzxN13GcKwwBitDbbWsuwys5atCZ6AMSX37ARL", "5HeFvLWCLStw8aZftXPLYDLBmIRFESju3hdEhIOJ");
+        Parse.initialize(this, "yYdPVCsM1GZGQWmJhxwQcszbG3802BJKWyqtZzFg","d8IVhmFzL6gzSAZEPxDCU9xmAjep08LVnUlRBfJG");
         PushService.setDefaultPushCallback(this, MainActivity.class);
         ParseInstallation.getCurrentInstallation().saveInBackground();
         ParseAnalytics.trackAppOpened(getIntent());
