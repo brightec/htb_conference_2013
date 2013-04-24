@@ -50,6 +50,7 @@ public class MainActivity extends SherlockFragmentActivity {
                     public void run() {
                         if (progress != null) {
                             progress.hide();
+                            progress.dismiss();
                             progress = null;
                         }
                     }
