@@ -1,7 +1,7 @@
 package org.alpha.focus2012.rows;
 
 import org.alpha.focus2012.DownloadableImageView;
-import org.alpha.focus2012.R;
+import org.alpha.conference2013.R;
 import org.alpha.focus2012.Row;
 import org.alpha.focus2012.data.Speaker;
 import org.alpha.focus2012.resources.Resource;

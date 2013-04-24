@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.alpha.focus2012.Constants;
-import org.alpha.focus2012.R;
+import org.alpha.conference2013.R;
 import org.alpha.focus2012.data.DataStore;
 import org.alpha.focus2012.data.Venue;
 import android.content.BroadcastReceiver;

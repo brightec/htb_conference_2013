@@ -12,7 +12,7 @@ import org.joda.time.LocalDateTime;
 import org.alpha.focus2012.AlphaAdapter;
 import org.alpha.focus2012.Constants;
 import org.alpha.focus2012.Page;
-import org.alpha.focus2012.R;
+import org.alpha.conference2013.R;
 import org.alpha.focus2012.Row;
 import org.alpha.focus2012.Section;
 import org.alpha.focus2012.data.DataStore;

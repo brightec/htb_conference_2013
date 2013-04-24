@@ -9,7 +9,7 @@ import org.joda.time.LocalDateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.alpha.focus2012.R;
+import org.alpha.conference2013.R;
 import org.alpha.util.JSON;
 import org.alpha.util.JSON.DateIntepretation;
 

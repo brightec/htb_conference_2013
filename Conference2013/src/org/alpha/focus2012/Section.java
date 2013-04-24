@@ -1,6 +1,7 @@
 package org.alpha.focus2012;
 
 import java.util.List;
+import org.alpha.conference2013.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

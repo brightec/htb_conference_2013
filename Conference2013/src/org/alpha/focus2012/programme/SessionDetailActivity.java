@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.text.StrBuilder;
 
 import org.alpha.focus2012.AlphaAdapter;
-import org.alpha.focus2012.R;
+import org.alpha.conference2013.R;
 import org.alpha.focus2012.Row;
 import org.alpha.focus2012.Section;
 import org.alpha.focus2012.data.DataStore;

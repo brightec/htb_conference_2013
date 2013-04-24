@@ -1,6 +1,6 @@
 package org.alpha.focus2012.more;
 
-import org.alpha.focus2012.R;
+import org.alpha.conference2013.R;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -1,6 +1,6 @@
 package org.alpha.focus2012.diary;
 
-import android.R;
+import org.alpha.conference2013.R;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -18,7 +18,7 @@ public class AlarmReceiver extends BroadcastReceiver {
  
     NotificationManager mNotificationManager = 	(NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-	Notification notification = new Notification(R.drawable.ic_lock_idle_alarm, "Combi Note", System.currentTimeMillis());
+	Notification notification = new Notification(android.R.drawable.ic_lock_idle_alarm, "Combi Note", System.currentTimeMillis());
 	PendingIntent contentIntent = PendingIntent.getActivity(context, NOTIFICATION_ID, new Intent(context, AlarmReceiver.class), 0);
 	Bundle extras=intent.getExtras();
 	String title=extras.getString("title");

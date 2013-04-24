@@ -1,5 +1,6 @@
 package org.alpha.focus2012;
 
+import org.alpha.conference2013.R;
 import org.alpha.focus2012.data.DownloadService;
 import org.alpha.focus2012.map.MapFragment;
 import org.alpha.focus2012.more.MoreFragment;

@@ -1,7 +1,7 @@
 package org.alpha.focus2012.more;
 
 import org.alpha.focus2012.Constants;
-import org.alpha.focus2012.R;
+import org.alpha.conference2013.R;
 import org.alpha.focus2012.alerts.AlertsActivity;
 import org.alpha.focus2012.events.EventDetailActivity;
 import org.alpha.focus2012.events.EventsActivity;

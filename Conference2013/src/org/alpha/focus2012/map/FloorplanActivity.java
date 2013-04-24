@@ -1,6 +1,6 @@
 package org.alpha.focus2012.map;
 
-import org.alpha.focus2012.R;
+import org.alpha.conference2013.R;
 import org.alpha.focus2012.resources.Resource;
 import android.os.Bundle;
 import android.util.Log;

@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.alpha.focus2012.DownloadableImageView;
-import org.alpha.focus2012.R;
+import org.alpha.conference2013.R;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;

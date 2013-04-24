@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.alpha.focus2012.AlphaAdapter;
-import org.alpha.focus2012.R;
+import org.alpha.conference2013.R;
 import org.alpha.focus2012.Row;
 import org.alpha.focus2012.Section;
 import org.alpha.focus2012.data.DataStore;

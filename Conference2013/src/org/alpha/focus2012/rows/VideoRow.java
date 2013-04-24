@@ -1,7 +1,7 @@
 package org.alpha.focus2012.rows;
 
 import org.alpha.focus2012.Cell;
-import org.alpha.focus2012.R;
+import org.alpha.conference2013.R;
 import org.alpha.focus2012.Row;
 import android.content.Context;
 import android.content.Intent;
