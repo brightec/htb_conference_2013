@@ -9,9 +9,9 @@ public final class Constants {
     public static final String HIDE_LOADING_MESSAGE_INTENT = "HIDE_LOADING_MESSAGE_INTENT";
     public static final String SHOW_OFFLINE_INTENT = "SHOW_OFFLINE_INTENT";
 
-    public static final int CONFERENCE_ID = 2;
+    public static final int CONFERENCE_ID = 3;
     
-    public static final String DATABASE_NAME = "focus2012";
+    public static final String DATABASE_NAME = "conference2013";
     public static final int DATABASE_VERSION = 1;
     
     public static final String TWITTER_SEARCH_TERM = "#focus2012";
