@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <org.alpha.focus2012.DownloadableImageView
+        <org.alpha.conference2013.DownloadableImageView
             android:id="@+id/imageView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

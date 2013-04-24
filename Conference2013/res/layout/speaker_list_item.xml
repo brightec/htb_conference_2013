@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
 
-    <org.alpha.focus2012.DownloadableImageView
+    <org.alpha.conference2013.DownloadableImageView
         android:id="@+id/image"
         style="@style/ListItemImage"
         android:layout_width="50dp"
