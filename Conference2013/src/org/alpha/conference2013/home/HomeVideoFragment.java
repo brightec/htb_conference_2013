@@ -73,7 +73,6 @@ public class HomeVideoFragment extends SherlockFragment {
         DownloadableImageView imageView = (DownloadableImageView) getSherlockActivity().findViewById(R.id.imageView);
         ImageView video = (ImageView) getSherlockActivity().findViewById(R.id.video);
         TextView descriptionTextView = (TextView) getSherlockActivity().findViewById(R.id.description);
-        Button bookButton = (Button) getSherlockActivity().findViewById(R.id.bookButton);
 
         Resource imageResource = new Resource(conference.imageKey, Resource.Type.ConferenceImage);
         imageView.setUrl(imageResource.url(), imageResource.cacheFilename());
@@ -86,15 +85,6 @@ public class HomeVideoFragment extends SherlockFragment {
         });
 
         descriptionTextView.setText(Html.fromHtml(conference.text));
-
-        bookButton.setVisibility((conference.bookingUrl.length() > 0? View.VISIBLE : View.GONE));
-        bookButton.setOnClickListener(new OnClickListener() {            
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(conference.bookingUrl));
-                startActivity(intent);
-            }
-        });
     }
 
 }

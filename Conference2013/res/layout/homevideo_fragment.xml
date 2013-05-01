@@ -28,13 +28,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/bookButton"
-            style="@style/event_book_button"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/event_book_button_title" />
-
     </LinearLayout>
 
 </ScrollView>
