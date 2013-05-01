@@ -3,6 +3,7 @@ package org.alpha.conference2013.twitter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import org.alpha.conference2013.Constants;
@@ -79,6 +80,8 @@ public class TwitterActivity extends SherlockListActivity {
             a.setTweets(tweets);
             a.notifyDataSetChanged();
 
+        } catch (JSONException e) {
+            e.printStackTrace();
         } finally {
             if (db != null) db.close();
             if (h != null) h.close();

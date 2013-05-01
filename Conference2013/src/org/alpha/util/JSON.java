@@ -17,6 +17,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,7 +53,8 @@ public final class JSON {
         case TWITTER:
             String str = j.optString(name);
             if (str != null) {
-                DateTimeFormatter f = DateTimeFormat.forPattern("EEE, d MMM yyyy HH:mm:ss Z");
+                //DateTimeFormatter f = DateTimeFormat.forPattern("EEE, d MMM yyyy HH:mm:ss Z");
+                DateTimeFormatter f = DateTimeFormat.forPattern("EEE MMM dd HH:mm:ss Z yyyy");
                 return f.parseDateTime(str).toLocalDateTime();
             } else {
                 return null;
@@ -71,7 +73,7 @@ public final class JSON {
     }
 
     
-    public static JSONObject loadFromUrl(String url) {
+    public static JSONArray loadFromUrl(String url) {
         Log.d(TAG, "downloading "+url);
 
         StringBuilder builder = new StringBuilder();
@@ -100,7 +102,7 @@ public final class JSON {
 
         if (builder.length() > 0) {
             try {
-                JSONObject o = new JSONObject(builder.toString());
+                JSONArray o = new JSONArray(builder.toString());
                 return o;
 
             } catch (JSONException e) {

@@ -81,13 +81,13 @@ public class TwitterPollService extends Service {
             Long mostRecentTweetId = DBHelper.getMostRecentTweetId(db);
             
             // download new tweets
-            String queryString = "q="+URLEncoder.encode(Constants.TWITTER_SEARCH_TERM, "US-ASCII");
+            String queryString = "hashtag=LC13&retweets=0&replies=1";
             if (mostRecentTweetId != null) {
                 queryString += "&since_id="+mostRecentTweetId;
             }
             
-            String url = "http://search.twitter.com/search.json?" + queryString;
-            JSONObject newData = JSON.loadFromUrl(url);
+            String url = "http://api.alpha.org/twitter/feed.json?" + queryString;
+            JSONArray newData = JSON.loadFromUrl(url);
             
             if (newData == null) {
                 return;
@@ -110,13 +110,13 @@ public class TwitterPollService extends Service {
     }
     
     
-    private static void populateDatabase(SQLiteDatabase db, JSONObject o) {
+    private static void populateDatabase(SQLiteDatabase db, JSONArray results) {
         try {
-            JSONArray results = o.getJSONArray("results");
+            //JSONArray results = o.getJSONArray("results");
             Log.d(TAG, "got "+results.length()+" results");
             for (int x=0; x<results.length(); x++) {
                 JSONObject result = results.getJSONObject(x);
-                long id = result.getLong("id");
+                long id = result.getLong("id_str");
                 Log.d(TAG, "saving tweet "+id);
                 DBHelper.insertOrUpdateTweet(db, id, result);
             }
