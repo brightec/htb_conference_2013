@@ -219,8 +219,8 @@ public class SessionDetailActivity extends SherlockFragmentActivity {
                                        PendingIntent sender = PendingIntent.getBroadcast(SessionDetailActivity.this, session.sessionId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                                        AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-                                       //am.set(AlarmManager.RTC_WAKEUP, reminderTime.toDateTime().getMillis(), sender);
-                                       am.set(AlarmManager.RTC_WAKEUP, new Date().getTime()+5000, sender);
+                                       am.set(AlarmManager.RTC_WAKEUP, reminderTime.toDateTime().getMillis(), sender);
+                                       //am.set(AlarmManager.RTC_WAKEUP, new Date().getTime()+5000, sender);
                                    }
 
                                    setResult(RESULT_OK);
